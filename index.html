@@ -15,7 +15,10 @@
                    sortTransparentObjects: true;
                    maxCanvasWidth: 1920;
                    maxCanvasHeight: 1920;"
-      xr-mode-ui="enterARButton: #html; XRMode: ar;">
+      xr-mode-ui="XRMode: ar;"
+      webxr="requiredFeatures: hit-test,local-floor;
+                optionalFeatures: dom-overlay,unbounded;
+                overlayElement: #overlay;">
  <!-- Proxy principal -->
 <a-sphere 
   class="destino"  
@@ -61,6 +64,7 @@
 </a-scene>
   </body>
 </html>
+
 
 
 
