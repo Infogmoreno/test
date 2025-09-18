@@ -18,7 +18,7 @@
      
       webxr="requiredFeatures: hit-test,local-floor;
                 optionalFeatures: dom-overlay,unbounded;
-                overlayElement: #html">
+                ">
  <!-- Proxy principal -->
 <a-sphere 
   class="destino"  
@@ -40,19 +40,13 @@
   proxy-event__scaleevento="event: mouseenter; to: .destino; as: scaleevento"
   proxy-event__scaleoutevento="event: mouseleave; to: .destino; as: scaleoutevento">
 </a-box>
- <a-entity id="html" htmlembed="ppu: 256" style="display: inline-block; z-index: 9999">
-   <h1><i>proxy-event</i> Component for <a href="https://aframe.io">A-Frame</a></h1>
-
-    <a class="back" href="https://supermedium.com/superframe/">&larr; K-Frame</a>
-
-    <p>A component to declaratively proxy events for A-Frame.</p>
-
-    <h2>Examples</h2>
-    <button style="background-color: brown; border-radius: 5; color: white; margin: 5px; padding: 5px">Botón overlay</button>
-    <ul id="examples">
-      
-    </ul>
- </a-entity>
+ <a-entity htmlembed
+   id="htmlembed"
+   position="0 0 -2">
+    <h1>An Example</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <img src="myImages.png" alt="image">
+  </a-entity>
   <!-- Cámara con cursor -->
   <a-entity camera look-controls>
   <a-entity cursor="fuse: true; fuseTimeout: 500; objects:.boton"
@@ -64,6 +58,7 @@
 </a-scene>
   </body>
 </html>
+
 
 
 
