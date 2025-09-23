@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js"></script>
+    <script src="https://supereggbert.github.io/aframe-htmlembed-component/dist/build.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    
+    
+    <script src="gesture-detector.js"></script>
+    <script src="gesture-handler.js"></script>
+
+    <script>
+
+         AFRAME.registerComponent('cursor-listener', {
+       init: function () {
+
+         const btn_1 = document.getElementById("btn_1");
+         const btn_2 = document.getElementById("btn_2");
+         const cilindro = document.getElementById("cilindro");
+
+         btn_1.addEventListener("mouseenter", function() {
+         cilindro.emit("iniciar");
+         };
+        }
+      };
+    </script>
+    <style>
+      h1 {
+         font-size: 52px;
+       }
+       .dark {
+         background-color: rgba(108, 150, 164, 0.3);
+         border-radius: 50px;
+         border-color:#DFE8EC ;
+         border-style: solid;
+         border-width: 1px;
+         background-repeat: no-repeat;
+         background-position: bottom right;
+         padding: 40px;
+       }
+       .main {
+         position: absolute;
+         width: 1024px;
+         height: 768px;
+         overflow: hidden;
+       }
+       .menu {
+         width: 256px;
+         height: 768px;
+         text-align: center;
+       }
+       .menu ul {
+         list-style-type: none;
+         margin: 0;
+         padding: 0;
+       }
+       div.button {
+         display: inline-block;
+         width: 100%;
+         border-radius: 6px;
+         background-color: #927fa1;
+         color: #fff;
+         text-decoration: none;
+         text-align: center;
+         padding: 5px 0;
+         margin-bottom: 20px;
+       }
+       div.button:hover {
+         background-color: #2e1e31;
+         color: #888;
+
+       }
+       div.button:active {
+         background-color: #2e1e31;
+         color: #888;
+         box-shadow: 0px 0px 50px #00d2ff;
+       }
+       a.imgLink {
+         width: 100%;
+         border-radius: 20px;
+         color: #fff;
+         text-decoration: none;
+         text-align: center;
+         padding: 10px 0;
+         margin-bottom: 20px;
+         background-color: #444;
+         border: 3px solid #444;
+         text-shadow: none;
+         display: block;
+       }
+       a.imgLink:hover {
+         border: 3px solid #fff;
+         background-color: #444;
+       }
+       .code {
+         white-space: pre;
+         font-size: 0.7em;
+         background-color: #000;
+         margin-bottom: 30px;
+       }
+       .next,
+       .prev {
+         position: absolute;
+         bottom: 0px;
+         right: 30px;
+         display: inline-block;
+         width: auto !important;
+         padding: 15px 30px !important;
+         z-index: 1;
+       }
+        .centr {
+         position: absolute;
+         bottom: 0px;
+         right: 500px;
+         display: inline-block;
+         width: auto !important;
+         padding: 15px 30px !important;
+         z-index: 1;
+       }
+       .prev {
+         right: auto;
+         left: 30px;
+         z-index: 1;
+       }
+       #page1 {
+         position: absolute;
+         height: 100%;
+         font-size: 30px;
+       }
+       #scene {
+         position: relative;
+         width: 100%;
+         height: 100%;
+         z-index: 9999;
+       }
+       p {
+         font-family: Roboto;
+         border-style: none;
+       }
+
+       div#bloque1{
+         display:block;
+       }
+       div#bloque2{
+         visibility:hidden;
+         transform: translate(0, -390px);
+       }
+    </style>
+
+    <style></style>
+  </head>
+  <body>
+    <a-scene
+      webxr="requiredFeatures: hit-test,local-floor;
+                optionalFeatures: dom-overlay,unbounded;
+                overlayElement: #overlay;"
+      
+    >
+      <a-entity
+        id="main"
+        class="screen dark main clickable"
+        htmlembed="ppu:256"
+        position="0 2.5 -5"
+      >
+        <div id="page1">
+          <h1>Cabecera titular</h1>
+
+          <div id="bloque1" >
+            <p>
+              HTML Embed es un componente creado para A-Frame. El componente
+              incrustación de HTML, permite que se inserte html arbitrario en su
+              escena Aframe. Le permite actualizar la pantalla dentro de A-Frame
+              solo manipulando el DOM como se haría normalmente.
+            </p>
+            <p>
+              Además de representar el html en la escena A-Frame, permite
+              Interacción. La mayoría de los pseudoselectores css como hover,
+              active, focus y el objetivo debería funcionar con la
+              interactividad habilitada sin ninguna modificaciones a su css. Los
+              eventos del mouse se pueden adjuntar al html elementos como de
+              costumbre.
+            </p>
+          </div>
+
+          <div id="bloque2">
+            <p>
+              La mayoría de los pseudoselectores css como hover, active, focus y
+              el objetivo debería funcionar con la interactividad habilitada sin
+              ninguna modificaciones a su css. Los eventos del mouse se pueden
+              adjuntar al html elementos como de costumbre.
+            </p>
+            <p>
+              HTML Embed es un componente creado para A-Frame. El componente
+              incrustación de HTML, permite que se inserte html arbitrario en su
+              escena Aframe. Le permite actualizar la pantalla dentro de A-Frame
+              solo manipulando el DOM como se haría normalmente.
+            </p>
+          </div>
+        </div>
+
+        <div id="prevbtn" class="button prev clickable" onclick="prev()">
+          volver
+        </div>
+        <div id="centrbtn" class="button centr clickable" onclick="prev()">
+          volver
+        </div>
+        <div id="nextbtn" class="button next clickable" onclick="next()">
+          iniciar
+        </div>
+
+        <!--botones shapes-->
+
+        <a-plane
+          id="planebtnnext"
+          class="clickable"
+          geometry="height: 0.75; width:1"
+          position="1.6 -1.44047 0.00955"
+          material="shader: flat"
+          scale="0.79 0.2 0.1"
+          visible="false"
+          onclick="next()"
+        >
+        </a-plane>
+
+        <a-plane
+          id="planebtncentro"
+          class="clickable"
+          geometry="height: 0.75; width:1"
+          position="0.02 -1.44047 0.00955"
+          material="shader: flat"
+          scale="0.9 0.2 0.1"
+          visible="false"
+          onclick="prev()"
+        >
+        </a-plane>
+        <a-plane
+          id="planebtnprev"
+          class="clickable"
+          geometry="height: 0.75; width:1"
+          position="-1.65 -1.44047 0.00955"
+          material="shader: flat"
+          scale="0.79 0.42 0.1"
+          visible="false"
+          onclick="prev()"
+        >
+        </a-plane>
+      </a-entity>
+      <a-entity position="0 0 -1.5" gesture-handler>
+        <a-box
+          id="boton"
+          class="clickable"
+          position="-1.2 1.4 -3"
+          width="0.75"
+          height="0.25"
+          depth="0.001"
+          rotation="0 0 0"
+          color="#4FABD9 "
+          event-set__mouseenter="scale:1.2 1.2 1; material.opacity: 0.5; material.color: #6993A8 "
+          event-set__mouseleave="scale: 1 1 1; material.opacity: 1; material.color: #4FABD9 "
+          event-set__boxrot_in="_event: mouseenter; _target: #box;
+                           animation.property:rotation;
+                           animation.from: 0 45 0;
+                           animation.to: 0 -360 0;
+                           animation.dur: 6000;                           
+                           animation.dir: normal;
+                           animation.easing: easeInOutQuad;
+                           material.color: gray;"
+          event-set__boxrot_out="_event: mouseleave; _target: #box;
+                           animation.property:rotation;
+                           animation.from: 0 -360 0;
+                           animation.to: 0 45 0;
+                           animation.dur: 6000;                           
+                           animation.dir: normal;
+                           animation.easing: easeInOutQuad;
+                           material.color: #4FABD9;
+                           "
+          proxy-event__esferacol="event: mouseenter; to: #esfera; as: iniciar"
+          proxy-event__esferacol_out="event: mouseleave; to: #esfera; as: volver"
+          proxy-event__cilind_in="event: mouseenter; to: #cilindro; as: iniciar"
+          proxy-event__cilind_out="event: mouseleave; to: #cilindro; as: volver"
+          proxy-event__planeopac_in="event: mouseenter; to: #suelo; as: iniciar"
+          proxy-event__planeopac_out="event: mouseleave; to: #suelo; as: volver"
+          proxy-event__skycol_in="event: mouseenter; to: #sky; as: iniciar"
+          proxy-event__skycol_out="event: mouseleave; to: #sky; as: volver"
+          
+        >
+        </a-box>
+        <a-box
+          id="box"
+          class="clickable"
+          position="-1 0.5 -3"
+          rotation="0 45 0"
+          color="#4CC3D9"
+        >
+        </a-box>
+        <a-sphere
+          id="esfera"
+          class="clickable"
+          position="0 1.25 -5"
+          radius="1.25"
+          color="#EF2D5E"
+          animation__1="property: material.color; from: #EF2D5E; to: #4CC3D9; dur: 2000; dir: normal; delay: 1000; startEvents: iniciar"
+          animation__2="property: material.color; from: #4CC3D9; to: #EF2D5E; dur: 1000; dir: normal; delay: 500; startEvents: volver"
+        >
+        </a-sphere>
+        <a-cylinder
+          id="cilindro"
+          class="clickable"
+          position="1 0.75 -3"
+          radius="0.5"
+          height="1.5"
+          color="#FFC65D"
+          animation__cilindr_in="property: position; from: 1 0.75 -3; to: 1 2.75 -3; dur: 4000; easing: easeInOutQuad; dir: normal; startEvents: iniciar"
+          animation__cilindr_out="property: position; from: 1 2.75 -3; to: 1 0.75 -3; dur: 2000; easing: easeInOutQuad; dir: normal; startEvents: volver"
+          cursor-listener
+        >
+        </a-cylinder>
+        <a-plane
+          id="suelo"
+          position="0 0 -4"
+          rotation="-90 0 0"
+          width="4"
+          height="4"
+          color="#7BC8A4"
+          animation__planeopac_in="property: material.opacity; from: 1; to: 0.2; dur: 3000; dir: normal; startEvents: iniciar"
+          animation__planeopac_out="property: material.opacity; from: 0.2; to: 1; dur: 3000; dir: normal; startEvents: volver"
+        >
+        </a-plane>
+      </a-entity>
+
+      <a-entity camera look-controls  position="0 1.65 0">
+        <a-entity
+          cursor="fuse: false; fuseTimeout: 500; rayOrigin: mouse; raycaster: *"
+          position="0 0 -1"
+          geometry="primitive: ring; radiusInner: 0.001; radiusOuter: 0.0017"
+          material="color: purple; shader: flat; opacity:0.7"
+        >
+        </a-entity>
+      </a-entity>
+      <!--    <a-sky
+        id="sky"
+        color="#ECECEC"
+        animation__skycol="property: material.color; from: #ECECEC; to: #01131C; dur: 4000; startEvents: iniciar"
+        animation__skycolout="property: material.color; from: #01131C; to: #ECECEC; dur: 4000; startEvents: volver"
+      >
+      </a-sky> -->
+    </a-scene>
+    <script>
+      var prevbtn = document.querySelector("#planebtnprev");
+      var nextbtn = document.querySelector("#planebtnnext");
+      var centrbtn = document.querySelector("#planebtncentro");
+
+      var cilindro = document.querySelector("#cilindro");
+      var esfera = document.querySelector("#esfera");
+      var cubo = document.querySelector("#box");
+      var bloque1 = document.querySelector("#bloque1");
+      var bloque2 = document.querySelector("#bloque2");
+
+      nextbtn.addEventListener("mouseenter", function () {
+        cilindro.emit("iniciar");
+        esfera.emit("iniciar");
+        cubo.emit("iniciar");
+        bloque1.style.visibility = "visible";
+        bloque2.style.visibility = "hidden";             
+      });
+
+      prevbtn.addEventListener("mouseenter", function () {
+        cilindro.emit("volver");
+        esfera.emit("volver");
+        bloque1.style.visibility = "visible";
+        bloque2.style.visibility = "hidden";        
+      });
+
+      centrbtn.addEventListener("mouseenter", function () {
+        cilindro.emit("volver");
+        bloque1.style.visibility = "hidden";
+        bloque2.style.visibility = "visible";
+      });
+    </script>
+  </body>
+</html>
